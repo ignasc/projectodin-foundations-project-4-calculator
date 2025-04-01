@@ -39,7 +39,7 @@ const BTN_ALL = [
 let numberOne;
 let numberTwo;
 let operator;
-let calcDisplayContent = "0123456789";
+let calcDisplayContent = 0;
 
 function add(a, b){
     return a + b;
@@ -68,9 +68,8 @@ mainApp.appendChild(calcDisplay);
 
 BTN_ALL.forEach(element => {
     let newButton = calcButton.cloneNode();
-    
     newButton.addEventListener("click", (e)=>{
-        console.log("Button pressed: " + e.target.textContent);
+        updateDisplay(e.target.textContent);
     });
 
     newButton.textContent = element;
@@ -78,3 +77,7 @@ BTN_ALL.forEach(element => {
 
     mainApp.appendChild(newButton);
 });
+
+function updateDisplay(content){
+    calcDisplay.textContent = parseInt(calcDisplay.textContent + content);
+};
