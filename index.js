@@ -39,6 +39,7 @@ const BTN_ALL = [
 let numberOne;
 let numberTwo;
 let operator;
+let calcDisplayContent = "0123456789";
 
 function add(a, b){
     return a + b;
@@ -61,6 +62,9 @@ const mainApp = document.querySelector("#root");
 
 const calcButton = document.createElement("button");
 
+const calcDisplay = document.createElement("div");
+calcDisplay.textContent = calcDisplayContent;
+mainApp.appendChild(calcDisplay);
 
 BTN_ALL.forEach(element => {
     let newButton = calcButton.cloneNode();
