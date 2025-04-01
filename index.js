@@ -13,32 +13,36 @@ const BTN_ADD = "+";
 const BTN_SUB = "-";
 const BTN_MUL = "*";
 const BTN_DIV = "/";
-const BTN_RET = "return";
-const BTN_CLR = "clear";
+const BTN_EQL = "=";
+const BTN_CLR = "clr";
+
+const BTN_CLASS_NUM = "number";
+const BTN_CLASS_OPER = "operator";
+const BTN_CLASS_OTHER = "other";
 
 const BTN_ALL = [
-    BTN_0,
-    BTN_1,
-    BTN_2,
-    BTN_3,
-    BTN_4,
-    BTN_5,
-    BTN_6,
-    BTN_7,
-    BTN_8,
-    BTN_9,
-    BTN_DOT,
-    BTN_ADD,
-    BTN_SUB,
-    BTN_MUL,
-    BTN_DIV,
-    BTN_RET,
-    BTN_CLR,
+    {"btn_value": BTN_0, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_1, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_2, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_3, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_4, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_5, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_6, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_7, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_8, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_9, "class": BTN_CLASS_NUM},
+    {"btn_value": BTN_DOT, "class": BTN_CLASS_OPER},
+    {"btn_value": BTN_ADD, "class": BTN_CLASS_OPER},
+    {"btn_value": BTN_SUB, "class": BTN_CLASS_OPER},
+    {"btn_value": BTN_MUL, "class": BTN_CLASS_OPER},
+    {"btn_value": BTN_DIV, "class": BTN_CLASS_OPER},
+    {"btn_value": BTN_EQL, "class": BTN_CLASS_OTHER},
+    {"btn_value": BTN_CLR, "class": BTN_CLASS_OTHER},
 ];
 
-let numberOne;
-let numberTwo;
-let operator;
+let numberOne = "0";
+let numberTwo = "";
+let operator = "";
 let calcDisplayContent = 0;
 
 function add(a, b){
@@ -72,12 +76,13 @@ BTN_ALL.forEach(element => {
         updateDisplay(e.target.textContent);
     });
 
-    newButton.textContent = element;
+    newButton.textContent = element["btn_value"];
     newButton.setAttribute("id", "btn-" + element);
+    newButton.setAttribute("class", element["class"]);
 
     mainApp.appendChild(newButton);
 });
 
 function updateDisplay(content){
-    calcDisplay.textContent = parseInt(calcDisplay.textContent + content);
+    calcDisplay.textContent = numberOne + operator + numberTwo;
 };
