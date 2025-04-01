@@ -31,12 +31,12 @@ const BTN_ALL = [
     {"btn_value": BTN_7, "class": BTN_CLASS_NUM},
     {"btn_value": BTN_8, "class": BTN_CLASS_NUM},
     {"btn_value": BTN_9, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_DOT, "class": BTN_CLASS_OPER},
+    {"btn_value": BTN_DOT, "class": BTN_CLASS_OTHER},
     {"btn_value": BTN_ADD, "class": BTN_CLASS_OPER},
     {"btn_value": BTN_SUB, "class": BTN_CLASS_OPER},
     {"btn_value": BTN_MUL, "class": BTN_CLASS_OPER},
     {"btn_value": BTN_DIV, "class": BTN_CLASS_OPER},
-    {"btn_value": BTN_EQL, "class": BTN_CLASS_OTHER},
+    {"btn_value": BTN_EQL, "class": BTN_CLASS_OPER},
     {"btn_value": BTN_CLR, "class": BTN_CLASS_OTHER},
 ];
 
@@ -73,15 +73,31 @@ mainApp.appendChild(calcDisplay);
 BTN_ALL.forEach(element => {
     let newButton = calcButton.cloneNode();
     newButton.addEventListener("click", (e)=>{
-        updateDisplay(e.target.textContent);
+        buttonPressed(e.target.getAttribute("value"), e.target.getAttribute("class"));
+        updateDisplay();
     });
 
     newButton.textContent = element["btn_value"];
-    newButton.setAttribute("id", "btn-" + element);
+    newButton.setAttribute("id", "btn-" + element["btn_value"]);
     newButton.setAttribute("class", element["class"]);
+    newButton.setAttribute("value", element["btn_value"]);
 
     mainApp.appendChild(newButton);
 });
+
+function buttonPressed(buttonValue, buttonClass){
+    if(buttonClass == BTN_CLASS_NUM && !operator){
+        numberOne = numberOne * 10 + parseInt(buttonValue);
+    };
+
+    if(buttonClass == BTN_CLASS_OPER && !numberTwo){
+        operator = buttonValue
+    };
+
+    if(buttonClass == BTN_CLASS_NUM && operator){
+        numberTwo = numberTwo * 10 + parseInt(buttonValue);
+    };
+};
 
 function updateDisplay(content){
     calcDisplay.textContent = numberOne + operator + numberTwo;
