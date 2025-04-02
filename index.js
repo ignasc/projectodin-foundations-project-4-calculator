@@ -97,6 +97,12 @@ function buttonPressed(buttonValue, buttonClass){
     if(buttonClass == BTN_CLASS_NUM && operator){
         numberTwo = numberTwo * 10 + parseInt(buttonValue);
     };
+
+    if(buttonValue == BTN_CLR){
+        numberOne = 0;
+        numberTwo = "";
+        operator = "";
+    };
 };
 
 function updateDisplay(content){
