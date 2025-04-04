@@ -44,6 +44,8 @@ let numberOne = "0";
 let numberTwo = "";
 let operator = "";
 let calcDisplayContent = 0;
+let decimalPoint = 1;
+let decimalPointActive = false;
 
 function add(a, b){
     return a + b;
@@ -86,23 +88,40 @@ BTN_ALL.forEach(element => {
 });
 
 function buttonPressed(buttonValue, buttonClass){
-    if(buttonClass == BTN_CLASS_NUM && !operator){
-        numberOne = numberOne * 10 + parseInt(buttonValue);
+    let multiplier = decimalPointActive ? 1 : 10;
+    
+    if(buttonValue == BTN_DOT && !decimalPointActive){
+        decimalPointActive = true;
+        return;
     };
 
+    decimalPoint = decimalPointActive ? (decimalPoint / 10) : 1;
+
+    if(buttonClass == BTN_CLASS_NUM && !operator){
+        numberOne = numberOne * multiplier + parseInt(buttonValue) * decimalPoint;
+        return;
+    };
+    
     if(buttonClass == BTN_CLASS_OPER && !numberTwo){
         operator = buttonValue
+        return;
     };
 
     if(buttonClass == BTN_CLASS_NUM && operator){
-        numberTwo = numberTwo * 10 + parseInt(buttonValue);
+        numberTwo = numberTwo * multiplier + parseInt(buttonValue) * decimalPoint;
+        return;
     };
 
     if(buttonValue == BTN_CLR){
-        numberOne = 0;
-        numberTwo = "";
-        operator = "";
+        resetCalculator();
     };
+};
+
+function resetCalculator(){
+    numberOne = 0;
+    numberTwo = "";
+    operator = "";
+    decimalPoint = 1;
 };
 
 function updateDisplay(content){
