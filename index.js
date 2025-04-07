@@ -118,6 +118,8 @@ function buttonPressed(buttonValue, buttonClass){
 
     if(buttonClass == BTN_CLASS_NUM && !operationComplete){
         newNumber.push(buttonValue);
+    } else if(buttonClass == BTN_CLASS_NUM && operationComplete){
+        newNumber = [buttonValue];
     };
     
     if(buttonClass == BTN_CLASS_OPER && numberTwo.length == 0){
