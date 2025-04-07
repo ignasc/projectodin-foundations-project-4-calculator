@@ -36,7 +36,7 @@ const BTN_ALL = [
     {"btn_value": BTN_SUB, "class": BTN_CLASS_OPER},
     {"btn_value": BTN_MUL, "class": BTN_CLASS_OPER},
     {"btn_value": BTN_DIV, "class": BTN_CLASS_OPER},
-    {"btn_value": BTN_EQL, "class": BTN_CLASS_OPER},
+    {"btn_value": BTN_EQL, "class": BTN_CLASS_OTHER},
     {"btn_value": BTN_CLR, "class": BTN_CLASS_OTHER},
 ];
 
@@ -47,6 +47,7 @@ let calcDisplayContent = 0;
 let decimalPoint = 1;
 let decimalPointActive = false;
 let numberTwoActive = false;
+let operationComplete = false;
 
 function add(a, b){
     return a + b;
@@ -89,6 +90,16 @@ BTN_ALL.forEach(element => {
 });
 
 function buttonPressed(buttonValue, buttonClass){
+    if(buttonValue == BTN_EQL){
+        if(numberOne.length > 0 && numberTwo.length > 0){
+            let answer = operate();
+            resetCalculator();
+            numberOne.push(answer + "");
+            updateDisplay();
+        };
+        return;
+    };
+
     let newNumber;
 
     if(numberTwoActive){
@@ -138,6 +149,7 @@ function resetCalculator(){
     numberTwo = [];
     operator = "";
     numberTwoActive = false;
+    operationComplete = false;
 };
 
 function updateDisplay(){
@@ -166,4 +178,27 @@ function getDigit(numberArray){
     });
     
     return parseFloat(digit);
+};
+
+function operate(){
+    let firstDigit = getDigit(numberOne);
+    let secondDigit = getDigit(numberTwo);
+    let answer;
+
+    switch (operator) {
+        case BTN_ADD:
+            answer = add(firstDigit, secondDigit);
+            break;
+        case BTN_SUB:
+            answer = subtract(firstDigit, secondDigit);
+            break;
+        case BTN_MUL:
+            answer = multiply(firstDigit, secondDigit);
+            break;
+        case BTN_DIV:
+            answer = divide(firstDigit, secondDigit);
+            break;
+    }
+
+    return answer;
 };
