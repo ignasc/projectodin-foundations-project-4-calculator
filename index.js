@@ -46,6 +46,7 @@ let operator = "";
 let calcDisplayContent = 0;
 let decimalPoint = 1;
 let decimalPointActive = false;
+let numberOneActive = true;
 let numberTwoActive = false;
 let operationComplete = false;
 
@@ -96,6 +97,7 @@ function buttonPressed(buttonValue, buttonClass){
             resetCalculator();
             numberOne.push(answer + "");
             updateDisplay();
+            operationComplete = true;
         };
         return;
     };
@@ -108,13 +110,13 @@ function buttonPressed(buttonValue, buttonClass){
         newNumber = [...numberOne];
     };
     
-    if(buttonValue == BTN_DOT && !decimalPointActive){
+    if(buttonValue == BTN_DOT && !decimalPointActive && !operationComplete){
         if(newNumber.length == 0){newNumber.push("0")};
         newNumber.push(buttonValue);
         decimalPointActive = true;
     };
 
-    if(buttonClass == BTN_CLASS_NUM){
+    if(buttonClass == BTN_CLASS_NUM && !operationComplete){
         newNumber.push(buttonValue);
     };
     
@@ -122,6 +124,7 @@ function buttonPressed(buttonValue, buttonClass){
         operator = buttonValue;
         numberTwoActive = true;
         decimalPointActive = false;
+        operationComplete = false;
         updateDisplay();
         return;
     } else if (buttonClass == BTN_CLASS_OPER && numberTwoActive){
