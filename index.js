@@ -98,6 +98,7 @@ function buttonPressed(buttonValue, buttonClass){
     };
     
     if(buttonValue == BTN_DOT && !decimalPointActive){
+        if(newNumber.length == 0){newNumber.push("0")};
         newNumber.push(buttonValue);
         decimalPointActive = true;
     };
