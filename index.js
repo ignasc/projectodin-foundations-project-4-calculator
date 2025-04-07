@@ -106,7 +106,7 @@ function buttonPressed(buttonValue, buttonClass){
         newNumber.push(buttonValue);
     };
     
-    if(buttonClass == BTN_CLASS_OPER){
+    if(buttonClass == BTN_CLASS_OPER && numberTwo.length == 0){
         operator = buttonValue;
         numberTwoActive = true;
         decimalPointActive = false;
@@ -114,6 +114,7 @@ function buttonPressed(buttonValue, buttonClass){
         return;
     } else if (buttonClass == BTN_CLASS_OPER && numberTwoActive){
         console.log("Execute operation and set answer as the first number");
+        return
     };
 
     if(buttonValue == BTN_CLR){
@@ -127,8 +128,6 @@ function buttonPressed(buttonValue, buttonClass){
     } else {
         numberOne = [...newNumber];
     };
-    console.log("ONE: " + numberOne)
-    console.log("TWO: " + numberTwo)
 
     updateDisplay();
 };
@@ -156,6 +155,14 @@ function updateDisplay(){
         firstDigit = "0";
     };
 
-    console.log("display should show: " + firstDigit + operator + secondDigit)
     calcDisplay.textContent = firstDigit + operator + secondDigit;
+};
+
+function getDigit(numberArray){
+    let digit = "";
+    numberArray.forEach((element)=>{
+        digit += element;
+    });
+    
+    return parseFloat(digit);
 };
