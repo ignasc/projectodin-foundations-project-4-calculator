@@ -40,12 +40,13 @@ const BTN_ALL = [
     {"btn_value": BTN_CLR, "class": BTN_CLASS_OTHER},
 ];
 
-let numberOne = "0";
-let numberTwo = "";
+let numberOne = [];
+let numberTwo = [];
 let operator = "";
 let calcDisplayContent = 0;
 let decimalPoint = 1;
 let decimalPointActive = false;
+let numberTwoActive = false;
 
 function add(a, b){
     return a + b;
@@ -88,42 +89,71 @@ BTN_ALL.forEach(element => {
 });
 
 function buttonPressed(buttonValue, buttonClass){
-    let multiplier = decimalPointActive ? 1 : 10;
+    let newNumber;
+
+    if(numberTwoActive){
+        newNumber = [...numberTwo];
+    } else {
+        newNumber = [...numberOne];
+    };
     
     if(buttonValue == BTN_DOT && !decimalPointActive){
+        newNumber.push(buttonValue);
         decimalPointActive = true;
-        return;
     };
 
-    decimalPoint = decimalPointActive ? (decimalPoint / 10) : 1;
-
-    if(buttonClass == BTN_CLASS_NUM && !operator){
-        numberOne = numberOne * multiplier + parseInt(buttonValue) * decimalPoint;
-        return;
+    if(buttonClass == BTN_CLASS_NUM){
+        newNumber.push(buttonValue);
     };
     
-    if(buttonClass == BTN_CLASS_OPER && !numberTwo){
-        operator = buttonValue
-        return;
-    };
-
-    if(buttonClass == BTN_CLASS_NUM && operator){
-        numberTwo = numberTwo * multiplier + parseInt(buttonValue) * decimalPoint;
+    if(buttonClass == BTN_CLASS_OPER && !numberTwoActive){
+        operator = buttonValue;
+        numberTwoActive = true;
+        decimalPointActive = false;
+        updateDisplay();
         return;
     };
 
     if(buttonValue == BTN_CLR){
         resetCalculator();
+        return;
     };
+
+    /*Update number with new value*/
+    if(numberTwoActive){
+        numberTwo = [...newNumber];
+    } else {
+        numberOne = [...newNumber];
+    };
+    console.log("ONE: " + numberOne)
+    console.log("TWO: " + numberTwo)
+
+    updateDisplay();
 };
 
 function resetCalculator(){
-    numberOne = 0;
-    numberTwo = "";
+    numberOne = [];
+    numberTwo = [];
     operator = "";
-    decimalPoint = 1;
+    numberTwoActive = false;
 };
 
-function updateDisplay(content){
-    calcDisplay.textContent = numberOne + operator + numberTwo;
+function updateDisplay(){
+    let firstDigit = "";
+    let secondDigit = "";
+
+    numberOne.forEach((element)=>{
+        firstDigit += element;
+    });
+
+    numberTwo.forEach((element)=>{
+        secondDigit += element;
+    });
+
+    if(firstDigit.length == 0){
+        firstDigit = "0";
+    };
+
+    console.log("display should show: " + firstDigit + operator + secondDigit)
+    calcDisplay.textContent = firstDigit + operator + secondDigit;
 };
