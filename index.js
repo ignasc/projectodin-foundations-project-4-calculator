@@ -106,12 +106,14 @@ function buttonPressed(buttonValue, buttonClass){
         newNumber.push(buttonValue);
     };
     
-    if(buttonClass == BTN_CLASS_OPER && !numberTwoActive){
+    if(buttonClass == BTN_CLASS_OPER){
         operator = buttonValue;
         numberTwoActive = true;
         decimalPointActive = false;
         updateDisplay();
         return;
+    } else if (buttonClass == BTN_CLASS_OPER && numberTwoActive){
+        console.log("Execute operation and set answer as the first number");
     };
 
     if(buttonValue == BTN_CLR){
