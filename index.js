@@ -98,6 +98,7 @@ function buttonPressed(buttonValue, buttonClass){
             numberOne.push(answer + "");
             updateDisplay();
             operationComplete = true;
+            decimalPointActive = false;
         };
         return;
     };
@@ -213,5 +214,5 @@ function operate(){
             break;
     }
 
-    return answer;
+    return Math.round(answer*100)/100;
 };
