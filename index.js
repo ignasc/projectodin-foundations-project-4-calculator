@@ -130,8 +130,16 @@ function buttonPressed(buttonValue, buttonClass){
         updateDisplay();
         return;
     } else if (buttonClass == BTN_CLASS_OPER && numberTwoActive){
-        console.log("Execute operation and set answer as the first number");
-        return
+        if(numberOne.length > 0 && numberTwo.length > 0){
+            let answer = operate();
+            resetCalculator();
+            numberOne.push(answer + "");
+            numberTwoActive = true;
+            decimalPointActive = false;
+            operator = buttonValue;
+            updateDisplay();
+        };
+        return;
     };
 
     if(buttonValue == BTN_CLR){
