@@ -21,23 +21,23 @@ const BTN_CLASS_OPER = "operator";
 const BTN_CLASS_OTHER = "other";
 
 const BTN_ALL = [
-    {"btn_value": BTN_0, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_1, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_2, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_3, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_4, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_5, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_6, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_7, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_8, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_9, "class": BTN_CLASS_NUM},
-    {"btn_value": BTN_DOT, "class": BTN_CLASS_OTHER},
-    {"btn_value": BTN_ADD, "class": BTN_CLASS_OPER},
-    {"btn_value": BTN_SUB, "class": BTN_CLASS_OPER},
-    {"btn_value": BTN_MUL, "class": BTN_CLASS_OPER},
-    {"btn_value": BTN_DIV, "class": BTN_CLASS_OPER},
-    {"btn_value": BTN_EQL, "class": BTN_CLASS_OTHER},
-    {"btn_value": BTN_CLR, "class": BTN_CLASS_OTHER},
+    {"btn_value": BTN_CLR, "class": BTN_CLASS_OTHER + ", row-1"},
+    {"btn_value": BTN_DIV, "class": BTN_CLASS_OPER + ", row-1"},
+    {"btn_value": BTN_MUL, "class": BTN_CLASS_OPER + ", row-1"},
+    {"btn_value": BTN_7, "class": BTN_CLASS_NUM + ", row-2"},
+    {"btn_value": BTN_8, "class": BTN_CLASS_NUM + ", row-2"},
+    {"btn_value": BTN_9, "class": BTN_CLASS_NUM + ", row-2"},
+    {"btn_value": BTN_SUB, "class": BTN_CLASS_OPER + ", row-2"},
+    {"btn_value": BTN_4, "class": BTN_CLASS_NUM + ", row-3"},
+    {"btn_value": BTN_5, "class": BTN_CLASS_NUM + ", row-3"},
+    {"btn_value": BTN_6, "class": BTN_CLASS_NUM + ", row-3"},
+    {"btn_value": BTN_ADD, "class": BTN_CLASS_OPER + ", row-3"},
+    {"btn_value": BTN_1, "class": BTN_CLASS_NUM + ", row-4"},
+    {"btn_value": BTN_2, "class": BTN_CLASS_NUM + ", row-4"},
+    {"btn_value": BTN_3, "class": BTN_CLASS_NUM + ", row-4"},
+    {"btn_value": BTN_0, "class": BTN_CLASS_NUM + ", row-4"},
+    {"btn_value": BTN_DOT, "class": BTN_CLASS_OTHER + ", row-4"},
+    {"btn_value": BTN_EQL, "class": BTN_CLASS_OTHER + ", row-5"},
 ];
 
 let numberOne = [];
@@ -67,11 +67,18 @@ function divide(a, b){
 };
 
 //Main calculator elements
+
 const mainApp = document.querySelector("#root");
+
+const calcDisplay = document.querySelector("#row-0");
+const mainAppRow1 = document.querySelector("#row-1");
+const mainAppRow2 = document.querySelector("#row-2");
+const mainAppRow3 = document.querySelector("#row-3");
+const mainAppRow4 = document.querySelector("#row-4");
+const mainAppRow5 = document.querySelector("#row-5");
 
 const calcButton = document.createElement("button");
 
-const calcDisplay = document.createElement("div");
 calcDisplay.textContent = calcDisplayContent;
 mainApp.appendChild(calcDisplay);
 
@@ -87,8 +94,30 @@ BTN_ALL.forEach(element => {
     newButton.setAttribute("class", element["class"]);
     newButton.setAttribute("value", element["btn_value"]);
 
-    mainApp.appendChild(newButton);
+    switch (newButton.getAttribute("class").split(" ")[1]) {
+        case "row-1":
+            mainAppRow1.appendChild(newButton);
+            break;
+        case "row-2":
+            mainAppRow2.appendChild(newButton);
+            break;
+        case "row-3":
+            mainAppRow3.appendChild(newButton);
+            break;
+        case "row-4":
+            mainAppRow4.appendChild(newButton);
+            break;
+        case "row-5":
+            mainAppRow5.appendChild(newButton);
+            break;
+    }
 });
+
+mainApp.appendChild(mainAppRow1);
+mainApp.appendChild(mainAppRow2);
+mainApp.appendChild(mainAppRow3);
+mainApp.appendChild(mainAppRow4);
+mainApp.appendChild(mainAppRow5);
 
 function buttonPressed(buttonValue, buttonClass){
     if(buttonValue == BTN_EQL){
