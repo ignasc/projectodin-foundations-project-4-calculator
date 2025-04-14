@@ -1,0 +1,106 @@
+/*
+* {
+    border: 1px solid red;
+}
+*/
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#root {
+    /*height:width ratio 6:4*/
+    border: 1px solid black;
+    height: 300px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calc-row{
+    display: flex;
+    flex-grow: 1;
+}
+
+button {
+    width: 25%;
+    height: 100%;
+}
+
+#row-0{
+    border: 1px solid black;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#row-1{
+    border: 1px solid red;
+}
+
+#row-2{
+    border: 1px solid black;
+}
+
+#row-3{
+    border: 1px solid red;
+}
+
+#row-sub {
+    display: flex;
+    flex-grow: 2;
+}
+
+#row-sub-1{
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 75%;
+}
+
+#row-sub-2 {
+    border: 1px solid blue;
+    display: flex;
+    flex-basis: 25%;
+}
+
+#row-4{
+    border: 1px solid black;
+    flex-basis: 100%;
+    display: flex;
+}
+
+#row-5{
+    border: 1px solid red;
+    flex-basis: 100%;
+    display: flex;
+}
+
+#row-6{
+    border: 1px solid black;
+    flex-basis: 100%;
+    display: flex;
+}
+
+#btn-clr{}
+#btn-\/{}
+#btn-\*{}
+#btn-1{
+    flex-grow: 1;
+}
+#btn-2{
+    flex-grow: 1;
+}
+#btn-3{
+    flex-grow: 1;
+}
+#btn-0{
+    flex-grow: 2;
+}
+#btn-\.{
+    flex-grow: 1;
+}
+#btn-\={
+    flex-grow: 1;
+}

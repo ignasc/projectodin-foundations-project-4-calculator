@@ -35,9 +35,9 @@ const BTN_ALL = [
     {"btn_value": BTN_1, "class": BTN_CLASS_NUM + ", row-4"},
     {"btn_value": BTN_2, "class": BTN_CLASS_NUM + ", row-4"},
     {"btn_value": BTN_3, "class": BTN_CLASS_NUM + ", row-4"},
-    {"btn_value": BTN_0, "class": BTN_CLASS_NUM + ", row-4"},
-    {"btn_value": BTN_DOT, "class": BTN_CLASS_OTHER + ", row-4"},
-    {"btn_value": BTN_EQL, "class": BTN_CLASS_OTHER + ", row-5"},
+    {"btn_value": BTN_0, "class": BTN_CLASS_NUM + ", row-5"},
+    {"btn_value": BTN_DOT, "class": BTN_CLASS_OTHER + ", row-5"},
+    {"btn_value": BTN_EQL, "class": BTN_CLASS_OTHER + ", row-6"},
 ];
 
 let numberOne = [];
@@ -76,16 +76,16 @@ const mainAppRow2 = document.querySelector("#row-2");
 const mainAppRow3 = document.querySelector("#row-3");
 const mainAppRow4 = document.querySelector("#row-4");
 const mainAppRow5 = document.querySelector("#row-5");
+const mainAppRow6 = document.querySelector("#row-6");
 
 const calcButton = document.createElement("button");
 
 calcDisplay.textContent = calcDisplayContent;
-mainApp.appendChild(calcDisplay);
 
 BTN_ALL.forEach(element => {
     let newButton = calcButton.cloneNode();
     newButton.addEventListener("click", (e)=>{
-        buttonPressed(e.target.getAttribute("value"), e.target.getAttribute("class"));
+        buttonPressed(e.target.getAttribute("value"), e.target.getAttribute("class").split(", ")[0]);
         updateDisplay();
     });
 
@@ -94,7 +94,7 @@ BTN_ALL.forEach(element => {
     newButton.setAttribute("class", element["class"]);
     newButton.setAttribute("value", element["btn_value"]);
 
-    switch (newButton.getAttribute("class").split(" ")[1]) {
+    switch (newButton.getAttribute("class").split(", ")[1]) {
         case "row-1":
             mainAppRow1.appendChild(newButton);
             break;
@@ -110,14 +110,11 @@ BTN_ALL.forEach(element => {
         case "row-5":
             mainAppRow5.appendChild(newButton);
             break;
+        case "row-6":
+            mainAppRow6.appendChild(newButton);
+            break;
     }
 });
-
-mainApp.appendChild(mainAppRow1);
-mainApp.appendChild(mainAppRow2);
-mainApp.appendChild(mainAppRow3);
-mainApp.appendChild(mainAppRow4);
-mainApp.appendChild(mainAppRow5);
 
 function buttonPressed(buttonValue, buttonClass){
     if(buttonValue == BTN_EQL){
