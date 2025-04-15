@@ -1,9 +1,3 @@
-/*
-* {
-    border: 1px solid red;
-}
-*/
-
 body {
     font-family: "Roboto", sans-serif;
     font-weight: 600;
@@ -33,13 +27,10 @@ body {
 button {
     width: 25%;
     height: 100%;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border-radius: 10px;
-    background-color: #393E46;
-    color:#EEEEEE;
-}
-button:hover {
-    background-color: #396666;
+/*    background-color: #393E46;*/
+    color:#222831;
 }
 
 #row-0{ /*calculator display*/
@@ -51,15 +42,6 @@ button:hover {
     border-radius: 10px;
     margin-bottom: 3px;
     padding: 5px;
-}
-
-#row-1{
-}
-
-#row-2{
-}
-
-#row-3{
 }
 
 #row-sub {
@@ -99,25 +81,18 @@ button:hover {
 #btn-clr:hover{
     background-color: rgb(255, 33, 33);
 }
-#btn-\/{}
-#btn-\*{}
-#btn-1{
-    flex-grow: 1;
+
+button:hover {
+    background-color: #00ADB5;
 }
-#btn-2{
-    flex-grow: 1;
-}
-#btn-3{
+
+#btn-1, #btn-2, #btn-3, #btn-\., #btn-\={
     flex-grow: 1;
 }
 #btn-0{
     flex-grow: 5;
 }
-#btn-\.{
-    flex-grow: 1;
-}
 #btn-\={
-    flex-grow: 1;
     background-color: #00b551;
     color: #222831;
 }
