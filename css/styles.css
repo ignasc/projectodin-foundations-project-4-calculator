@@ -5,6 +5,8 @@
 */
 
 body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
     display: flex;
     justify-content: center;
 }
@@ -26,13 +28,18 @@ body {
 button {
     width: 25%;
     height: 100%;
+    font-size: 1.5rem;
+}
+button:hover {
+    background-color: rgb(200, 200, 200);
 }
 
-#row-0{
+#row-0{ /*calculator display*/
     border: 1px solid black;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    font-size: 3rem;
 }
 
 #row-1{
@@ -96,7 +103,7 @@ button {
     flex-grow: 1;
 }
 #btn-0{
-    flex-grow: 2;
+    flex-grow: 5;
 }
 #btn-\.{
     flex-grow: 1;
