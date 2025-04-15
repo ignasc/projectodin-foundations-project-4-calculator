@@ -177,6 +177,7 @@ function buttonPressed(buttonValue, buttonClass){
 
     if(buttonValue == BTN_CLR){
         resetCalculator();
+        updateDisplay();
         return;
     };
 
