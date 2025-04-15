@@ -147,6 +147,7 @@ function buttonPressed(buttonValue, buttonClass){
         newNumber.push(buttonValue);
     } else if(buttonClass == BTN_CLASS_NUM && operationComplete){
         newNumber = [buttonValue];
+        operationComplete = !operationComplete;
     };
     
     if(buttonClass == BTN_CLASS_OPER && numberTwo.length == 0){
