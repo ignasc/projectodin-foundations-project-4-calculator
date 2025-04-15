@@ -9,15 +9,20 @@ body {
     font-weight: 600;
     display: flex;
     justify-content: center;
+    margin-top: 50px;
 }
 
 #root {
     /*height:width ratio 6:4*/
-    border: 1px solid black;
+    border: 10px solid #222831;
+    border-radius: 10px;
+    overflow: hidden;
     height: 300px;
     width: 200px;
     display: flex;
     flex-direction: column;
+    background-color: #222831;
+    box-shadow: 3px 3px 5px #393E46;
 }
 
 .calc-row{
@@ -28,30 +33,33 @@ body {
 button {
     width: 25%;
     height: 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    background-color: #393E46;
+    color:#EEEEEE;
 }
 button:hover {
-    background-color: rgb(200, 200, 200);
+    background-color: #396666;
 }
 
 #row-0{ /*calculator display*/
-    border: 1px solid black;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
+    background-color: #EEEEEE;
+    border-radius: 10px;
+    margin-bottom: 3px;
+    padding: 5px;
 }
 
 #row-1{
-    border: 1px solid red;
 }
 
 #row-2{
-    border: 1px solid black;
 }
 
 #row-3{
-    border: 1px solid red;
 }
 
 #row-sub {
@@ -60,37 +68,37 @@ button:hover {
 }
 
 #row-sub-1{
-    border: 1px solid green;
     display: flex;
     flex-direction: column;
     flex-basis: 75%;
 }
 
 #row-sub-2 {
-    border: 1px solid blue;
     display: flex;
     flex-basis: 25%;
 }
 
 #row-4{
-    border: 1px solid black;
     flex-basis: 100%;
     display: flex;
 }
 
 #row-5{
-    border: 1px solid red;
     flex-basis: 100%;
     display: flex;
 }
 
 #row-6{
-    border: 1px solid black;
     flex-basis: 100%;
     display: flex;
 }
 
-#btn-clr{}
+#btn-clr{
+    background-color: rgb(255, 97, 97);
+}
+#btn-clr:hover{
+    background-color: rgb(255, 33, 33);
+}
 #btn-\/{}
 #btn-\*{}
 #btn-1{
@@ -110,4 +118,9 @@ button:hover {
 }
 #btn-\={
     flex-grow: 1;
+    background-color: #00b551;
+    color: #222831;
+}
+#btn-\=:hover {
+    background-color: #19d300;
 }
