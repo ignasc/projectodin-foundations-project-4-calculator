@@ -86,7 +86,6 @@ BTN_ALL.forEach(element => {
     let newButton = calcButton.cloneNode();
     newButton.addEventListener("click", (e)=>{
         buttonPressed(e.target.getAttribute("value"), e.target.getAttribute("class").split(", ")[0]);
-        updateDisplay();
     });
 
     newButton.textContent = element["btn_value"];
@@ -119,6 +118,12 @@ BTN_ALL.forEach(element => {
 function buttonPressed(buttonValue, buttonClass){
     if(buttonValue == BTN_EQL){
         if(numberOne.length > 0 && numberTwo.length > 0){
+            
+            if(getDigit(numberTwo) == 0 && operator == BTN_DIV){
+                divisionByZero();
+                return;
+            };
+
             let answer = operate();
             resetCalculator();
             numberOne.push(answer + "");
@@ -193,9 +198,15 @@ function resetCalculator(){
     operationComplete = false;
 };
 
-function updateDisplay(){
+function updateDisplay(content){
     let firstDigit = "";
     let secondDigit = "";
+    
+    if(content){
+        resetCalculator();
+        calcDisplay.textContent = content;
+        return;
+    };
 
     numberOne.forEach((element)=>{
         firstDigit += element;
@@ -242,4 +253,9 @@ function operate(){
     }
 
     return Math.round(answer*100)/100;
+};
+
+function divisionByZero(){
+    console.log("division by zero")
+    updateDisplay("Excuse me?!");
 };
