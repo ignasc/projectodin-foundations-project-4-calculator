@@ -82,6 +82,7 @@ const calcButton = document.createElement("button");
 
 calcDisplay.textContent = calcDisplayContent;
 
+
 BTN_ALL.forEach(element => {
     let newButton = calcButton.cloneNode();
     newButton.addEventListener("click", (e)=>{
@@ -260,3 +261,25 @@ function divisionByZero(){
     console.log("division by zero")
     updateDisplay("Excuse me?!");
 };
+
+/*Keyboard support*/
+
+document.addEventListener("keydown", (e)=>{
+
+    if(e.key == "Escape"){
+        document.getElementById("btn-" + BTN_CLR).click();
+        return;
+    };
+
+    if(e.key == "Enter"){
+        document.getElementById("btn-" + BTN_EQL).click();
+        return;
+    };
+
+    let buttonReference = document.getElementById("btn-" + e.key);
+
+    if(buttonReference){
+        buttonReference.click();
+    };
+
+});
